@@ -1,0 +1,7 @@
+{
+  "name": "ion-quez",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
