@@ -45,7 +45,6 @@ export class Tab3Page {
     if(this.darkMode) {
       Preferences.set({key: 'darkModeActivated', value: 'true'}); 
     } else {
-      // localStorage.setItem('darkModeActivated', 'false');
       Preferences.set({key: 'darkModeActivated', value: 'false'});
     }
   }
