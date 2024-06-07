@@ -7,7 +7,8 @@ The main point of making this is just an excuse to mess around with Ionic Framew
 3. Make it so clicking an account shows all tweets from that account like you would expect it to
 4. Make username and hashtag links actually work
 5. Maybe have the spring backend handle the user calls and searches
-6. Make a real settings screen with dark mode and profanity filter or something
-7. No real plan to make polls real (or maybe think of a better thing for screen 2)
+6. Make a real settings screen with dark mode (done!) and profanity filter or something
+7. Make polls real (as in it shows the options, the user picks, then it shows all results)
+8. Make it so you can switch the way the poll data is displayed? Like toggle between pie and bar? No need to do it, it would just be neat to see if it's possible
 ## Hey
 If you're one of my players get out of here lol
