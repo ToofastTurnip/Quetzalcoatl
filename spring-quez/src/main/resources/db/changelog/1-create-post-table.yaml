@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-post-table
+      author: Toofast
+      comment: "Create the table for posts data"
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: VARCHAR(24)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user
+                  type: VARCHAR(32)
+              - column:
+                  name: date
+                  type: VARCHAR(24)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: post
+                  type: VARCHAR(500)
+            tableName: posts
