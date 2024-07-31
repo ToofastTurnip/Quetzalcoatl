@@ -1,8 +1,8 @@
 databaseChangeLog:
   - changeSet:
-      id: 1-create-post-table
+      id: 1-create-glyphs-table
       author: Toofast
-      comment: "Create the table for posts data"
+      comment: "Create the table for glyph data"
       changes:
         - createTable:
             columns:
@@ -10,7 +10,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                  name: id
+                  name: glyphId
                   type: VARCHAR(24)
               - column:
                   constraints:
@@ -25,4 +25,4 @@ databaseChangeLog:
                     nullable: false
                   name: post
                   type: VARCHAR(500)
-            tableName: posts
+            tableName: glyphsTable

@@ -13,9 +13,9 @@ import jakarta.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Post {
+public class Glyph {
     @Id
-    private String id;
+    private String glyphId;
     private String user;
     private String date;
     private String post;

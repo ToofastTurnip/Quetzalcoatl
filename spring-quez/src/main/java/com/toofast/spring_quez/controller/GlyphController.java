@@ -1,7 +1,7 @@
 package com.toofast.spring_quez.controller;
 
-import com.toofast.spring_quez.entity.Post;
-import com.toofast.spring_quez.service.PostService;
+import com.toofast.spring_quez.entity.Glyph;
+import com.toofast.spring_quez.service.GlyphService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,26 +12,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/posts")
-public class PostController {
+public class GlyphController {
 
     @Autowired
-    private PostService postService;
+    private GlyphService glyphService;
 
     @GetMapping("/{id}")
-    public Post getPost(@PathVariable String id) {
-        return postService.getPostById(id);
+    public Glyph getGlyph(@PathVariable String id) {
+        return glyphService.getGlyphById(id);
     }
 
     @GetMapping
-    public List<Post> getAllPosts() {
-        return postService.getAllPosts();
+    public List<Glyph> getAllGlyphs() {
+        return glyphService.getAllGlyphs();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Post postPost(@RequestBody Post post) {
-        // haha postPost that's not confusing
-        return postService.createPost(post);
+    public Glyph postGlyph(@RequestBody Glyph glyph) {
+        return glyphService.createGlyph(glyph);
     }
 
 }
