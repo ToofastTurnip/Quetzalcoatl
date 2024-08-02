@@ -17,8 +17,8 @@ public class GlyphService {
         return glyphRepository.save(glyph);
     }
 
-    public Glyph getGlyphById(String id) {
-        return glyphRepository.findByGlyphId(id);
+    public Glyph getGlyphByRune(String id) {
+        return glyphRepository.findByRune(id);
     }
 
     // one of these two will work hopefully haha

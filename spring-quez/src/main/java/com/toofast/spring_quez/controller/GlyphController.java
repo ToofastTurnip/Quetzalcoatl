@@ -19,7 +19,7 @@ public class GlyphController {
 
     @GetMapping("/{id}")
     public Glyph getGlyph(@PathVariable String id) {
-        return glyphService.getGlyphById(id);
+        return glyphService.getGlyphByRune(id);
     }
 
     @GetMapping

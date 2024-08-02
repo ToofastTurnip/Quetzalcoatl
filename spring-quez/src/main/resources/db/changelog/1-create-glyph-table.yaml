@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1-create-glyphs-table
+      id: 1-glyph-table
       author: Toofast
       comment: "Create the table for glyph data"
       changes:
@@ -10,19 +10,19 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                  name: glyphId
+                  name: rune
                   type: VARCHAR(24)
               - column:
                   constraints:
                     nullable: false
-                  name: user
+                  name: username
                   type: VARCHAR(32)
               - column:
-                  name: date
+                  name: glyph_date
                   type: VARCHAR(24)
               - column:
                   constraints:
                     nullable: false
-                  name: post
+                  name: glyph_content
                   type: VARCHAR(500)
-            tableName: glyphsTable
+            tableName: GLYPH

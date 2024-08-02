@@ -14,9 +14,10 @@ import jakarta.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class Glyph {
+    // a rune is the id of the post
     @Id
-    private String glyphId;
-    private String user;
-    private String date;
-    private String post;
+    private String rune;
+    private String username;
+    private String glyph_date;
+    private String glyph_content;
 }
