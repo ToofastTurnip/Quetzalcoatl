@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-glyph-table
+      author: Toofast
+      comment: "Create the table for glyph data"
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: rune
+                  type: VARCHAR(24)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: username
+                  type: VARCHAR(32)
+              - column:
+                  name: glyph_date
+                  type: VARCHAR(24)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: glyph_content
+                  type: VARCHAR(500)
+            tableName: GLYPH

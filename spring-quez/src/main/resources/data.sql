@@ -1,0 +1,1 @@
+INSERT INTO GLYPH (rune, username, glyph_date, glyph_content) VALUES ('1000', 'UhMe', 'now', 'test');

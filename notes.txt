@@ -1,0 +1,25 @@
+Notes for me
+
+To get code changes onto the phone:
+`ionic build` build it
+`ionic cap copy` copy the code to the project
+`ionic cap sync` don't actually know if this is necessary lol
+`ionic cap open android` open it in android studio
+Then plug the phone in and pick it from the dropdown next to the run button at the top
+Will set up ios sometime soon
+
+Icons go in the ionic project and follow this convention
+assets/
+├── icon-only.png
+├── icon-foreground.png
+├── icon-background.png
+├── splash.png
+└── splash-dark.png
+OR
+assets/
+├── logo.png
+└── logo-dark.png
+The run this:
+`npx capacitor-assets generate`
+- side note, `npm install @capacitor/assets --save-dev` won't work in the ion-quez but it works just fine in the parent directory so that's why there's a node_modules folder there. No idea why
+
