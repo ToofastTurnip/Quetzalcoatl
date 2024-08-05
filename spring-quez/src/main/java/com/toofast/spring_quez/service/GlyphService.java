@@ -17,16 +17,20 @@ public class GlyphService {
         return glyphRepository.save(glyph);
     }
 
+    public void loadGlyphs(List<Glyph> glyphs) {
+        glyphRepository.saveAll(glyphs);
+    }
+
     public Glyph getGlyphByRune(String id) {
         return glyphRepository.findByRune(id);
     }
 
-    // one of these two will work hopefully haha
-//    public List<Glyph> getAllPosts() {
-//        return glyphRepository.getGlyphs();
-//    }
     public List<Glyph> getAllGlyphs() {
         return glyphRepository.findAll();
+    }
+
+    public void deleteGlyphByRune(String id) {
+        glyphRepository.deleteByRune(id);
     }
 
 }
