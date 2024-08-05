@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface GlyphRepository extends JpaRepository<Glyph, String> {
 
     Glyph findByRune(String rune);
+    void deleteByRune(String rune);
 }
