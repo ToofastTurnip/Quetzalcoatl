@@ -33,4 +33,8 @@ public class GlyphService {
         glyphRepository.deleteByRune(id);
     }
 
+    public void deleteAllGlyphs() {
+        glyphRepository.deleteAll();
+    }
+
 }
