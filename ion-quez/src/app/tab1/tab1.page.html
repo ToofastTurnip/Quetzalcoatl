@@ -13,6 +13,17 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-card *ngFor="let item of items" >
+    <ion-card-header>
+      <ion-card-title>&#64;{{item.username}}</ion-card-title>
+      <ion-card-subtitle>{{item.glyph_date}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{item.glyph_content}}
+    </ion-card-content>
+ </ion-card>
+
+<!-- 
   <ion-card>
     <ion-card-header>
       <ion-card-title>&#64;KrisIsKool</ion-card-title>
@@ -1303,6 +1314,6 @@
     <ion-card-content>
       So excited for the new season of <span style="color: #3880ff;">#TheHunt</span>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
 </ion-content>

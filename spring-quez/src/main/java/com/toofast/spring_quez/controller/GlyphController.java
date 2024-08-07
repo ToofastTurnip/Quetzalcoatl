@@ -47,4 +47,12 @@ public class GlyphController {
         glyphService.deleteGlyphByRune(id);
     }
 
+    @DeleteMapping("/danger")
+    @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
+    @Transactional
+    public void deleteAllGlyphs() {
+        glyphService.deleteAllGlyphs();
+    }
+    // DO NOT IMPLEMENT THIS ENDPOINT IN THE FRONTEND, BRO! IT'S ONLY FOR TESTING/DEV!
+
 }
