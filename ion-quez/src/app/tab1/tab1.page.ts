@@ -18,10 +18,12 @@ export class Tab1Page {
 
   ngOnInit(): void {
     this.glyphService.getAllGlyphs().subscribe(
-        result => {
-            this.items = result;
-            console.log(this.items);
-        });
+      result => {
+        this.items = result;
+        // sort by rune id so list is newest to oldest
+        this.items.sort((a, b) => Number(b.rune) - Number(a.rune))
+      }
+    );
   }
 
 }
