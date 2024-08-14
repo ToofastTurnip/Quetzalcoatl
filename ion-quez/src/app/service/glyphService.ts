@@ -13,7 +13,7 @@ export class GlyphService {
     //   'accept': 'application/ld+json',
     //   'Content-Type': 'application/x-www-form-urlencoded'
     // });
-    const request = this.http.get(`http://localhost:8080/api/posts`, { responseType: 'text', observe: 'response' }).pipe(
+    const request = this.http.get(`http://localhost:8080/api/glyphs`, { responseType: 'text', observe: 'response' }).pipe(
       catchError((res: HttpErrorResponse) => {
         if (res.status === 0) {
           return throwError(() => '');

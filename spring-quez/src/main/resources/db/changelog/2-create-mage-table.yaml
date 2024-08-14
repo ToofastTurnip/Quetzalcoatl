@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2-mage-table
+      author: Toofast
+      comment: "Create the table for mage data"
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: username
+                  type: VARCHAR(16)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: encrypted_pass
+                  type: VARCHAR(32)
+              - column:
+                  name: first_name
+                  type: VARCHAR(24)
+              - column:
+                  name: last_name
+                  type: VARCHAR(24)
+            tableName: MAGE
