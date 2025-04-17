@@ -23,3 +23,28 @@ The run this:
 `npx capacitor-assets generate`
 - side note, `npm install @capacitor/assets --save-dev` won't work in the ion-quez but it works just fine in the parent directory so that's why there's a node_modules folder there. No idea why
 
+Postman request should be POST to http://localhost:8080/api/posts and should be formatted like this:
+{
+    "rune": "1000",
+    "username": "UhMe",
+    "glyph_date": "now",
+    "glyph_content": "test"
+}
+there is a load endpoint for the initial load, which can take as many as you want which is POST to http://localhost:8080/api/posts/load like this:
+[
+    {
+        "rune": "1000",
+        "username": "UhMe",
+        "glyph_date": "now",
+        "glyph_content": "test"
+    },
+    {
+        "rune": "1001",
+        "username": "UhMe",
+        "glyph_date": "then",
+        "glyph_content": "test again"
+    }
+]
+Where rune is the post id, username is who posted it, date is what goes in the date field on a post card object (it's just text so it doesn't matter how the dates are formatted since posts are organized by rune id, not date), and content obviously the content of the post
+Then you can GET all like http://localhost:8080/api/posts or get one like http://localhost:8080/api/posts/1000 where 1000 is the rune id
+DELETE with the rune id same as GET by id
