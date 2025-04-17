@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class Mage {
+    // a mage is a user, because h2 doesn't like when you use its keywords lol
     @Id
     private String username;
     private String encrypted_pass;
