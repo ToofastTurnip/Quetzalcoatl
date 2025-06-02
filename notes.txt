@@ -48,3 +48,16 @@ there is a load endpoint for the initial load, which can take as many as you wan
 Where rune is the post id, username is who posted it, date is what goes in the date field on a post card object (it's just text so it doesn't matter how the dates are formatted since posts are organized by rune id, not date), and content obviously the content of the post
 Then you can GET all like http://localhost:8080/api/posts or get one like http://localhost:8080/api/posts/1000 where 1000 is the rune id
 DELETE with the rune id same as GET by id
+
+Helper scripts:
+`generate_cards.py` will convert a json array like the one for the /load endpoint above^ into ion-card components so they can be pasted into the app for hardcoding.
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>&#64;Username</ion-card-title>
+    <ion-card-subtitle>May 9th</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    Here is a tweet <span style="color: #3880ff;">#TheHunt</span>
+  </ion-card-content>
+</ion-card>
+It will also replace `@` with `&#64;` and wrap hashtags and usernames in blue spans. Run it with `python3 generate_cards.py /path/to/jsonPosts.json` or like `python3 generate_cards.py ../../jsonPosts.json` or something.
