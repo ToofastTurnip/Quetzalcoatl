@@ -11,5 +11,7 @@ The main point of making this is just an excuse to mess around with Ionic Framew
 7. Fix the darkmode implementation to help it ignore system settings
 8. Make polls real (as in it shows the options, the user picks, then it shows all results)
 9. Make it so you can switch the way the poll data is displayed? Like toggle between pie and bar? No need to do it, it would just be neat to see if it's possible
+10. Move backend to EC2
+11. Move H2 to S3
 ## Hey
 If you're one of my players get out of here lol
