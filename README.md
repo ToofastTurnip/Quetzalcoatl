@@ -1,6 +1,6 @@
 # Quetzalcoatl
 
-A fake social media platform for use in film and TV productions — or anywhere you need convincing fake social media posts on a phone screen. Originally built as a prop for a D&D campaign, rebuilt as a general-purpose tool for producers and directors.
+A fake social media platform for use in film and TV productions, or anywhere you need convincing fake social media posts on a phone screen. Originally built as a prop for a D&D campaign, rebuilt as a general-purpose tool for producers and directors.
 
 The app looks and feels like a real social media app. An admin panel lets you manage all posts and branding without touching any code.
 
@@ -11,12 +11,12 @@ The app looks and feels like a real social media app. An admin panel lets you ma
 - Twitter/X-style scrollable feed with real-looking posts
 - Tappable `@mentions` → profile view, tappable `#hashtags` → tag feed
 - **Admin panel** (Admin tab) for creating, editing, and deleting posts
-- Branding editor — change the platform name, icon emoji, and colors live
+- Branding editor: change the platform name, icon emoji, and colors live
 - Like and repost buttons that actually increment counts
 - Engagement counts editable directly (set likes to 10,000 without tapping it 10,000 times)
 - Import and export posts as JSON
 - Images in posts (file picker or URL)
-- First-boot onboarding — start blank or load example posts
+- First-boot onboarding: start blank or load example posts
 - Dark mode support
 - PWA-ready for iOS "Add to Home Screen" (feels native, shows a real icon)
 
@@ -65,7 +65,7 @@ Then open `http://localhost:8100` in your browser.
 
 ---
 
-## Running on iOS (free, PWA — no Mac/Xcode required)
+## Running on iOS (free PWA, no Mac/Xcode required)
 
 The app is configured as a PWA. Any iPhone can add it to the home screen where it will look and behave like a native app.
 
@@ -133,7 +133,7 @@ npx capacitor-assets generate
 
 ## Changing the app name
 
-The platform name shown inside the app is controlled from the **Admin tab** and is stored on the device — no rebuild needed.
+The platform name shown inside the app is controlled from the **Admin tab** and is stored on the device, no rebuild needed.
 
 To change the actual native app icon name (what appears under the icon on the home screen), edit `ion-quez/capacitor.config.ts`:
 
@@ -184,8 +184,8 @@ Posts are stored as a JSON array. Each post has this shape:
 }
 ```
 
-- `avatar` — either 1–2 character initials string (when `avatarIsImage: false`) or a URL/base64 image (when `avatarIsImage: true`)
-- `imageUrl` — optional; omit the field entirely if there's no image
-- `timestamp` — ISO 8601 format; controls how old the post appears
+- `avatar`: either 1–2 character initials string (when `avatarIsImage: false`) or a URL/base64 image (when `avatarIsImage: true`)
+- `imageUrl`: optional; omit the field entirely if there's no image
+- `timestamp`: ISO 8601 format; controls how old the post appears
 
 You can export your current posts, edit the JSON in any text editor, and re-import them. This is the fastest way to bulk-create posts.

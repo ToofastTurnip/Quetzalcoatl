@@ -110,7 +110,7 @@ export class Tab3Page implements OnInit, OnDestroy {
           await this.postService.importPosts(reader.result as string);
           await this.showToast(`Posts imported successfully!`);
         } catch {
-          await this.showToast('Invalid JSON file — must be an array of posts.');
+          await this.showToast('Invalid JSON file, must be an array of posts.');
         }
       });
     };
