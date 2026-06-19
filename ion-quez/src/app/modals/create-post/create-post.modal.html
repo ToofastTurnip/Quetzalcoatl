@@ -45,7 +45,7 @@
     </ion-item>
   </ion-list>
 
-  <!-- @mention autocomplete — admin mode only -->
+  <!-- @mention autocomplete, admin mode only -->
   <div *ngIf="adminMode && showMentionDropdown" class="mention-dropdown">
     <div
       *ngFor="let user of mentionResults"
