@@ -1,0 +1,27 @@
+<ion-content class="ion-padding onboarding-content">
+  <div class="onboarding-container">
+    <div class="platform-icon">{{ brand.iconEmoji }}</div>
+    <h1>{{ brand.platformName }}</h1>
+    <p class="tagline">{{ brand.tagline }}</p>
+    <p class="intro">Welcome! How would you like to get started?</p>
+
+    <div class="choice-cards">
+      <div class="choice-card" (click)="loadDefaults()" [class.disabled]="loading">
+        <ion-icon name="download-outline" class="choice-icon"></ion-icon>
+        <div class="choice-title">Load Example Posts</div>
+        <div class="choice-desc">Pre-filled with sample posts so you can see the app in action right away.</div>
+      </div>
+
+      <div class="choice-card outline" (click)="startBlank()" [class.disabled]="loading">
+        <ion-icon name="create-outline" class="choice-icon"></ion-icon>
+        <div class="choice-title">Start Fresh</div>
+        <div class="choice-desc">Begin with a blank feed and create your own posts from scratch.</div>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="loading-overlay">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Loading…</p>
+    </div>
+  </div>
+</ion-content>

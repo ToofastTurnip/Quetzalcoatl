@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>New Post</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="submit()" [disabled]="!canSubmit" strong>Post</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="stacked">Handle <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input
+        [(ngModel)]="handle"
+        (ionInput)="onHandleChange()"
+        placeholder="username"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Display Name</ion-label>
+      <ion-input
+        [(ngModel)]="displayName"
+        placeholder="Full name (auto-fills from handle)"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Content <ion-text color="danger">*</ion-text></ion-label>
+      <ion-textarea
+        #contentTextarea
+        [(ngModel)]="content"
+        (ionInput)="onContentInput()"
+        placeholder="What's happening?"
+        [rows]="4"
+        [autoGrow]="true"
+      ></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <!-- @mention autocomplete — admin mode only -->
+  <div *ngIf="adminMode && showMentionDropdown" class="mention-dropdown">
+    <div
+      *ngFor="let user of mentionResults"
+      class="mention-item"
+      (mousedown)="$event.preventDefault()"
+      (click)="selectMention(user.handle)"
+    >
+      <div class="mention-avatar">{{ user.avatar }}</div>
+      <div class="mention-info">
+        <span class="mention-display-name">{{ user.displayName }}</span>
+        <span class="mention-handle">&#64;{{ user.handle }}</span>
+      </div>
+    </div>
+  </div>
+
+  <ion-list-header class="section-header">
+    <ion-label>Image (optional)</ion-label>
+  </ion-list-header>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="stacked">Image URL</ion-label>
+      <ion-input [(ngModel)]="imageUrl" placeholder="https://... or use picker"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pick from device</ion-label>
+      <input #filePicker type="file" accept="image/*" (change)="onImagePick($event)" style="display:none" />
+      <ion-button slot="end" fill="outline" size="small" (click)="filePicker.click()">Browse</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="imageUrl" class="image-preview">
+    <img [src]="imageUrl" alt="Post image preview" />
+    <ion-button size="small" fill="clear" color="danger" (click)="imageUrl = ''">Remove</ion-button>
+  </div>
+
+  <ion-list-header class="section-header">
+    <ion-label>Engagement Counts</ion-label>
+  </ion-list-header>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="stacked">Likes</ion-label>
+      <ion-input type="number" [(ngModel)]="likes" placeholder="0" min="0"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Reposts</ion-label>
+      <ion-input type="number" [(ngModel)]="reposts" placeholder="0" min="0"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Replies</ion-label>
+      <ion-input type="number" [(ngModel)]="replies" placeholder="0" min="0"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

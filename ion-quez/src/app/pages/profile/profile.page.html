@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>&#64;{{ handle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="profile-header">
+    <div
+      class="profile-avatar"
+      [style.background-color]="avatarIsImage ? 'transparent' : brandConfig.primaryColor"
+    >
+      <img *ngIf="avatarIsImage" [src]="avatar" class="avatar-img" [alt]="displayName" />
+      <span *ngIf="!avatarIsImage" class="avatar-initials">{{ avatar }}</span>
+    </div>
+    <div class="profile-info">
+      <div class="profile-display-name">{{ displayName }}</div>
+      <div class="profile-handle">&#64;{{ handle }}</div>
+    </div>
+  </div>
+
+  <div class="section-divider">Posts</div>
+
+  <ng-container *ngIf="(posts$ | async) as posts">
+    <app-post-card
+      *ngFor="let post of posts; trackBy: trackById"
+      [post]="post"
+    ></app-post-card>
+
+    <div *ngIf="posts.length === 0" class="empty-state">
+      <ion-icon name="person-outline" size="large"></ion-icon>
+      <p>No posts from &#64;{{ handle }}</p>
+    </div>
+  </ng-container>
+</ion-content>

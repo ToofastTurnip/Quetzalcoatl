@@ -1,24 +1,130 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Settings
-    </ion-title>
+    <ion-title>Admin</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
+  <!-- Branding -->
+  <ion-list-header class="section-header">
+    <ion-label>Branding</ion-label>
+  </ion-list-header>
   <ion-list [inset]="true">
     <ion-item>
-      <ion-toggle [checked]="darkMode" justify="space-between" (ionChange)="toggleDarkMode()">
-        Dark Mode
-      </ion-toggle>
+      <ion-label position="stacked">Platform Name</ion-label>
+      <ion-input [(ngModel)]="brandForm.platformName" placeholder="Quetzalcoatl"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Tagline</ion-label>
+      <ion-input [(ngModel)]="brandForm.tagline" placeholder="What's happening?"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Icon (paste one emoji)</ion-label>
+      <ion-input [(ngModel)]="brandForm.iconEmoji" placeholder="🐦" style="max-width: 80px"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Primary Color</ion-label>
+      <div class="color-picker-wrapper" slot="end">
+        <div class="color-swatch" [style.background]="brandForm.primaryColor"></div>
+        <input type="color" [(ngModel)]="brandForm.primaryColor" class="color-input" />
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Accent Color</ion-label>
+      <div class="color-picker-wrapper" slot="end">
+        <div class="color-swatch" [style.background]="brandForm.accentColor"></div>
+        <input type="color" [(ngModel)]="brandForm.accentColor" class="color-input" />
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-toggle [(ngModel)]="brandForm.showCounts" justify="space-between">Show Engagement Counts</ion-toggle>
+    </ion-item>
+  </ion-list>
+  <div class="action-row">
+    <ion-button expand="block" (click)="saveBranding()">Save Branding</ion-button>
+  </div>
+
+  <!-- Appearance -->
+  <ion-list-header class="section-header">
+    <ion-label>Appearance</ion-label>
+  </ion-list-header>
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-toggle [checked]="darkMode" (ionChange)="toggleDarkMode()" justify="space-between">Dark Mode</ion-toggle>
     </ion-item>
   </ion-list>
 
+  <!-- Data Management -->
+  <ion-list-header class="section-header">
+    <ion-label>Data</ion-label>
+  </ion-list-header>
+  <div class="data-buttons">
+    <ion-button expand="block" fill="outline" (click)="exportJSON()">
+      <ion-icon name="download-outline" slot="start"></ion-icon>
+      Export Posts as JSON
+    </ion-button>
+    <ion-button expand="block" fill="outline" (click)="importFilePicker.click()">
+      <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+      Import Posts from JSON
+    </ion-button>
+    <input
+      #importFilePicker
+      type="file"
+      accept=".json,application/json"
+      (change)="onImportFile($event)"
+      style="display:none"
+    />
+    <ion-button expand="block" fill="outline" color="warning" (click)="resetToDefaults()">
+      <ion-icon name="refresh-outline" slot="start"></ion-icon>
+      Reset to Example Posts
+    </ion-button>
+    <ion-button expand="block" fill="outline" color="danger" (click)="startFresh()">
+      <ion-icon name="trash-outline" slot="start"></ion-icon>
+      Clear All Posts
+    </ion-button>
+  </div>
+
+  <!-- Posts List -->
+  <ion-list-header class="section-header">
+    <ion-label>All Posts ({{ allPosts.length }})</ion-label>
+  </ion-list-header>
+  <div class="search-wrapper">
+    <ion-searchbar
+      [(ngModel)]="searchQuery"
+      (ionInput)="onSearch()"
+      placeholder="Search posts…"
+      debounce="200"
+    ></ion-searchbar>
+  </div>
+
+  <ion-list [inset]="true">
+    <ion-item *ngFor="let post of filteredPosts; trackBy: trackById">
+      <div class="post-row" slot="start">
+        <div class="post-row-handle">&#64;{{ post.handle }}</div>
+        <div class="post-row-content">{{ post.content.length > 80 ? (post.content | slice:0:80) + '…' : post.content }}</div>
+      </div>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="openEditPost(post)">
+          <ion-icon name="pencil-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="danger" (click)="deletePost(post)">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-item *ngIf="filteredPosts.length === 0">
+      <ion-label class="ion-text-center ion-padding" color="medium">
+        {{ searchQuery ? 'No matching posts' : 'No posts yet' }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div class="bottom-spacer"></div>
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="openCreatePost()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

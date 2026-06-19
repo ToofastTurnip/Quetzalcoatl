@@ -1,0 +1,116 @@
+ion-content.onboarding-content {
+  --background: var(--ion-background-color);
+}
+
+.onboarding-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+
+  .platform-icon {
+    font-size: 72px;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: var(--ion-text-color);
+  }
+
+  .tagline {
+    color: var(--ion-color-medium);
+    font-size: 15px;
+    margin: 0 0 24px;
+  }
+
+  .intro {
+    font-size: 16px;
+    color: var(--ion-text-color);
+    margin: 0 0 28px;
+  }
+}
+
+.choice-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.choice-card {
+  background: var(--ion-color-primary);
+  color: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active:not(.disabled) {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+
+  &.outline {
+    background: transparent;
+    border: 2px solid var(--ion-color-primary);
+    color: var(--ion-color-primary);
+
+    .choice-icon,
+    .choice-desc {
+      color: var(--ion-color-medium);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .choice-icon {
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .choice-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .choice-desc {
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.4;
+  }
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 8px;
+
+  p {
+    margin: 0;
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Edit Post</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()" [disabled]="!canSubmit" strong>Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="stacked">Handle <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input
+        [(ngModel)]="handle"
+        (ionInput)="onHandleChange()"
+        placeholder="username"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Display Name</ion-label>
+      <ion-input [(ngModel)]="displayName" placeholder="Full name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Content <ion-text color="danger">*</ion-text></ion-label>
+      <ion-textarea
+        [(ngModel)]="content"
+        placeholder="What's happening?"
+        [rows]="4"
+        [autoGrow]="true"
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Timestamp (ISO 8601)</ion-label>
+      <ion-input
+        [(ngModel)]="timestamp"
+        placeholder="2024-05-01T09:00:00Z"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header class="section-header">
+    <ion-label>Post Image (optional)</ion-label>
+  </ion-list-header>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="stacked">Image URL</ion-label>
+      <ion-input [(ngModel)]="imageUrl" placeholder="https://..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pick from device</ion-label>
+      <input #postImagePicker type="file" accept="image/*" (change)="onPostImagePick($event)" style="display:none" />
+      <ion-button slot="end" fill="outline" size="small" (click)="postImagePicker.click()">Browse</ion-button>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="imageUrl" class="image-preview">
+    <img [src]="imageUrl" alt="Post image preview" />
+    <ion-button size="small" fill="clear" color="danger" (click)="imageUrl = ''">Remove</ion-button>
+  </div>
+
+  <ion-list-header class="section-header">
+    <ion-label>Avatar</ion-label>
+  </ion-list-header>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-toggle [(ngModel)]="avatarIsImage" justify="space-between">Use custom avatar image</ion-toggle>
+    </ion-item>
+    <ng-container *ngIf="avatarIsImage">
+      <ion-item>
+        <ion-label position="stacked">Avatar Image URL</ion-label>
+        <ion-input [(ngModel)]="avatarInput" placeholder="https://..."></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pick avatar from device</ion-label>
+        <input #avatarPicker type="file" accept="image/*" (change)="onAvatarImagePick($event)" style="display:none" />
+        <ion-button slot="end" fill="outline" size="small" (click)="avatarPicker.click()">Browse</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label color="medium">Preview</ion-label>
+        <ion-avatar slot="end">
+          <img [src]="avatarInput" [alt]="displayName" />
+        </ion-avatar>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+  <ion-list-header class="section-header">
+    <ion-label>Engagement Counts</ion-label>
+  </ion-list-header>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="stacked">Likes</ion-label>
+      <ion-input type="number" [(ngModel)]="likes" min="0"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Reposts</ion-label>
+      <ion-input type="number" [(ngModel)]="reposts" min="0"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Replies</ion-label>
+      <ion-input type="number" [(ngModel)]="replies" min="0"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
