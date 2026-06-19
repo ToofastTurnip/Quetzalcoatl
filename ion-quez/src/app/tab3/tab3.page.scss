@@ -1,1 +1,70 @@
 @import '@ionic/angular/css/palettes/dark.class.css';
+
+.section-header {
+  margin-top: 16px;
+}
+
+.action-row {
+  padding: 8px 16px 4px;
+}
+
+.data-buttons {
+  padding: 4px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-wrapper {
+  padding: 0 8px;
+}
+
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.color-input {
+  opacity: 0;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+.post-row {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 0;
+
+  .post-row-handle {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--quez-link-color, var(--ion-color-primary));
+    margin-bottom: 2px;
+  }
+
+  .post-row-content {
+    font-size: 13px;
+    color: var(--ion-color-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.bottom-spacer {
+  height: 32px;
+}

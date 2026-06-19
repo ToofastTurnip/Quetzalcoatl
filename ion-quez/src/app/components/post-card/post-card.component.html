@@ -1,0 +1,60 @@
+<div class="post-card">
+  <div class="post-header">
+    <div
+      class="avatar"
+      [style.background-color]="post.avatarIsImage ? 'transparent' : brandConfig.primaryColor"
+      (click)="navigateToProfile('@' + post.handle)"
+    >
+      <img *ngIf="post.avatarIsImage" [src]="post.avatar" [alt]="post.displayName" class="avatar-img" />
+      <span *ngIf="!post.avatarIsImage" class="avatar-initials">{{ post.avatar }}</span>
+    </div>
+
+    <div class="post-body">
+      <div class="post-meta">
+        <span class="display-name" (click)="navigateToProfile('@' + post.handle)">{{ post.displayName }}</span>
+        <span class="handle" (click)="navigateToProfile('@' + post.handle)">&#64;{{ post.handle }}</span>
+        <span class="dot">·</span>
+        <span class="timestamp">{{ formatTime(post.timestamp) }}</span>
+      </div>
+
+      <div class="post-content">
+        <ng-container *ngFor="let seg of segments">
+          <span *ngIf="seg.type === 'text'">{{ seg.value }}</span>
+          <span *ngIf="seg.type === 'hashtag'" class="link" (click)="navigateToHashtag(seg.value)">{{ seg.value }}</span>
+          <span *ngIf="seg.type === 'mention'" class="link" (click)="navigateToProfile(seg.value)">{{ seg.value }}</span>
+        </ng-container>
+      </div>
+
+      <div *ngIf="post.imageUrl" class="post-image-container">
+        <img [src]="post.imageUrl" class="post-image" alt="Post image" />
+      </div>
+
+      <div *ngIf="brandConfig.showCounts" class="post-actions">
+        <button class="action-btn reply-btn" aria-label="replies">
+          <ion-icon name="chatbubble-outline"></ion-icon>
+          <span *ngIf="post.replies > 0">{{ formatCount(post.replies) }}</span>
+        </button>
+
+        <button
+          class="action-btn repost-btn"
+          [class.active]="reposted"
+          (click)="onRepost()"
+          aria-label="repost"
+        >
+          <ion-icon name="repeat-outline"></ion-icon>
+          <span *ngIf="currentReposts > 0">{{ formatCount(currentReposts) }}</span>
+        </button>
+
+        <button
+          class="action-btn like-btn"
+          [class.active]="liked"
+          (click)="onLike()"
+          aria-label="like"
+        >
+          <ion-icon [name]="liked ? 'heart' : 'heart-outline'"></ion-icon>
+          <span *ngIf="currentLikes > 0">{{ formatCount(currentLikes) }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
